@@ -26,36 +26,20 @@ Using the HoughLinesP(),detect line co-ordinates for every points in the images.
 ## REG NO: 212222230181
 ## Output
 ```
-import cv2
+ import cv2
 import numpy as np
 import matplotlib.pyplot as plt
-
-image = cv2.imread('HappyFish.jpg')  # Replace with your image path
-
-# Detect lines using the probabilistic Hough transform
-lines = cv2.HoughLinesP(edges, rho=1, theta=np.pi/180, threshold=100, minLineLength=50, maxLineGap=10)
-
-# Draw the lines on the original image
-output_image = image.copy()
-
-if lines is not None:
-    for line in lines:
-        x1, y1, x2, y2 = line[0]
-        cv2.line(output_image, (x1, y1), (x2, y2), (0, 255, 0), 2)
-
-
-# Displaying results using Matplotlib
-plt.figure(figsize=(12, 12))
-
+image = cv2.imread('cute.jpeg')
 # Input Image and Grayscale Image
-plt.subplot(2, 2, 1)
-plt.imshow(cv2.cvtColor(image, cv2.COLOR_BGR2RGB))
+plt.imshow(image)
 plt.title('Input Image')
 plt.axis('off')
-
+plt.show()
 
 ```
-![Screenshot 2024-10-15 190000](https://github.com/user-attachments/assets/db09cf30-fc8c-4f5e-9461-f371d6d55918)
+![Screenshot 2024-10-15 193317](https://github.com/user-attachments/assets/e580dbc4-c599-489b-8581-2d5b77df05c2)
+
+
 
 ### Input image and grayscale image
 ```
@@ -83,13 +67,23 @@ plt.axis('off')
 
 ### Display the result of Hough transform
 ```
+# Detect lines using the probabilistic Hough transform
+lines = cv2.HoughLinesP(edges, rho=1, theta=np.pi/180, threshold=100, minLineLength=50, maxLineGap=10)
 
+# Draw the lines on the original image
+output_image = image.copy()
+
+if lines is not None:
+    for line in lines:
+        x1, y1, x2, y2 = line[0]
+        cv2.line(output_image, (x1, y1), (x2, y2), (0, 255, 0), 2)
 # Hough Transform Result
-plt.subplot(2, 2, 4)
-plt.imshow(cv2.cvtColor(output_image, cv2.COLOR_BGR2RGB))
+plt.imshow(output_image)
 plt.title('Hough Transform - Line Detection')
 plt.axis('off')
-
+plt.show()
+# Displaying results using Matplotlib
+plt.figure(figsize=(12, 12))
 # Display all results
 plt.show()
 
